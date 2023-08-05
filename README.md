@@ -52,3 +52,40 @@ systemctl enable zabbix-server zabbix-agent apache2
 ```
 ![9-2](./9-2.png)
 ---
+
+### Задание 2 
+
+Установите Zabbix Agent на два хоста.
+
+*Приложите скриншот раздела Configuration > Hosts, где видно, что агенты подключены к серверу.*
+*Приложите скриншот лога zabbix agent, где видно, что он работает с сервером.*
+*Приложите скриншот раздела Monitoring > Latest data для обоих хостов, где видны поступающие от агентов данные.*
+*Приложите текст использованных команд в GitHub.*
+1. Устанавливаю репозиторий Zabbix на оба хоста:
+```bash
+wget https://repo.zabbix.com/zabbix/6.0/debian/pool/main/z/zabbix-release/zabbix-release_6.0-4+debian11_all.deb
+```
+```bash
+dpkg -i zabbix-release_6.0-4+debian11_all.deb
+```
+```bash
+apt update
+```
+2. Устанавливаю Zabbix-agent на оба хоста:
+```bash
+apt install zabbix-agent
+```
+3. Добавляю адрес zabbix-server в zabbix_agent2.conf на обоих хостах:
+```bash
+sudo nano /etc/zabbix/zabbix_agent.conf
+```
+4. Рестарт и автозапуск Zabbix-agent на обоих хостах:
+```bash
+systemctl restart zabbix-agent
+```
+```bash
+systemctl enable zabbix-agent
+```
+![9-2-2](./9-2-2.png)
+![9-2-3](./9-2-3.png)
+![9-2-4](./9-2-4.png)
